@@ -269,6 +269,32 @@
     .fit .yes svg { color: var(--lilac-ink); }
     .fit .no svg { color: var(--rose-ink); }
 
+    /* Depoimentos */
+    .voices { background: var(--lilac); padding-top: 64px; padding-bottom: 64px; overflow: hidden; }
+    .voices .kicker { color: var(--ink); opacity: .8; }
+    .voices .h2 { margin-bottom: 14px; }
+    .rating { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .rating span { color: var(--ink); letter-spacing: 2px; margin-right: 6px; }
+    .voices .swipe-hint { color: var(--ink); opacity: .75; }
+    .quotes {
+      display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 var(--gutter) 6px; margin: 0 calc(var(--gutter) * -1) 32px;
+      scrollbar-width: none;
+    }
+    .quotes::-webkit-scrollbar { display: none; }
+    .quotes li {
+      flex: 0 0 86%; scroll-snap-align: start; scroll-margin-left: var(--gutter);
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: var(--paper); padding: 28px 24px 24px;
+    }
+    .quotes li::before {
+      content: "“"; display: block; height: 40px;
+      font-family: var(--display); font-size: 80px; line-height: 1; color: var(--rose);
+    }
+    .quotes blockquote { margin: 0 0 24px; font-family: var(--display); font-size: 20px; line-height: 1.4; }
+    .who { margin: 0; padding-top: 14px; border-top: 1px solid var(--rule); font-weight: 700; font-size: 15px; }
+    .who span { display: block; font-weight: 400; color: var(--ink-2); }
+
     /* Como começar */
     .start { padding-top: 64px; padding-bottom: 64px; }
     .start .h2 { margin-bottom: 28px; }
@@ -361,7 +387,11 @@
       .cta { width: auto; display: inline-flex; padding: 16px 34px; }
       .bar { height: 72px; padding: 0 calc(var(--side) - 12px) 0 var(--side); }
       .bar-name { opacity: 1; }
-      .mirror, .how, .build, .fit, .start, .online, .faq { padding-top: 112px; padding-bottom: 112px; }
+      .mirror, .how, .build, .fit, .voices, .start, .online, .faq { padding-top: 112px; padding-bottom: 112px; }
+      .quotes { overflow: visible; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin: 40px 0 48px; padding: 0; }
+      .quotes li { grid-column: span 2; }
+      .quotes li:nth-child(4) { grid-column: 2 / span 2; }
+      .quotes li:nth-child(5) { grid-column: 4 / span 2; }
 
       /* Botão do WhatsApp flutuando no canto */
       .dock { left: auto; right: 28px; bottom: 28px; padding: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
@@ -614,9 +644,40 @@
       </div>
     </section>
 
-    <!-- 8. DEPOIMENTOS: fora do ar por enquanto. Quando chegarem as avaliações,
-         criar aqui a seção "Quem já passou por aqui" / "O que dizem as pessoas atendidas",
-         com 3 a 5 depoimentos assinados com iniciais e o botão "Agendar minha primeira conversa". -->
+    <!-- 8. DEPOIMENTOS: avaliações públicas do perfil da Thaís no Google, assinadas com iniciais -->
+    <section class="voices pad" id="depoimentos">
+      <div class="col">
+        <p class="kicker">Quem já passou por aqui</p>
+        <h2 class="h2">O que dizem as pessoas atendidas</h2>
+        <p class="rating"><span aria-hidden="true">★★★★★</span> Nota 5,0 em 8 avaliações no Google</p>
+        <p class="swipe-hint">Deslize para o lado &rarr;</p>
+        <ul class="quotes">
+          <li>
+            <blockquote>Tenho sido atendido de forma online pela Dra. Thaís Leone porque moro em Londres, e só tenho elogios a fazer. Ela é extremamente atenciosa, respeitosa e acolhedora. Em cada sessão, me sinto ouvido de verdade e guiado a refletir melhor sobre meus sentimentos e desafios.</blockquote>
+            <p class="who">H. S. <span>atendido online, de Londres</span></p>
+          </li>
+          <li>
+            <blockquote>Uma profissional maravilhosa, muito humana, acolhedora e competente. Com sua escuta atenta e orientação, me ajudou a enxergar muitas coisas de forma diferente e trouxe mudanças muito positivas para minha vida.</blockquote>
+            <p class="who">C. M.</p>
+          </li>
+          <li>
+            <blockquote>Sua escuta atenta e acolhedora foi fundamental para o meu desenvolvimento pessoal. Cada encontro trouxe reflexões importantes e me ajudou a enxergar novas possibilidades, sempre com muito respeito e sensibilidade.</blockquote>
+            <p class="who">N. P.</p>
+          </li>
+          <li>
+            <blockquote>Mesmo com poucas sessões, eu consigo notar uma diferença positiva nos meus comportamentos. Acredito que seja pela ótima didática que ela possui e pelo acolhimento incrível que ela tem comigo.</blockquote>
+            <p class="who">P. P.</p>
+          </li>
+          <li>
+            <blockquote>Excelente profissional! Ela é super atenciosa e muito cuidadosa com seus pacientes! Recomendo demais!</blockquote>
+            <p class="who">T. R.</p>
+          </li>
+        </ul>
+        <a class="cta dark" href="https://wa.me/5521982988862?text=Ol%C3%A1%2C%20Tha%C3%ADs!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20primeira%20conversa." target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#wa"/></svg>Agendar minha primeira conversa
+        </a>
+      </div>
+    </section>
 
     <!-- 9. COMO COMEÇAR -->
     <section class="start pad">
@@ -631,9 +692,6 @@
           <li><div><h3>Primeira sessão</h3><p>Uma conversa para entender a sua demanda e o que você espera da terapia.</p></div></li>
           <li><div><h3>Plano e acompanhamento</h3><p>Sessões semanais, plano de ação entre os encontros e revisões do progresso, para você sempre saber em que ponto está.</p></div></li>
         </ol>
-        <a class="cta dark" href="https://wa.me/5521982988862?text=Ol%C3%A1%2C%20Tha%C3%ADs!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20primeira%20conversa." target="_blank" rel="noopener">
-          <svg aria-hidden="true"><use href="#wa"/></svg>Agendar minha primeira conversa
-        </a>
         </div>
       </div>
     </section>
