@@ -353,12 +353,13 @@
 
     /* Telas maiores. O foco é o celular; aqui o layout só se reorganiza em colunas */
     @media (min-width: 900px) {
-      :root { --gutter: 56px; }
+      /* Tudo fica numa coluna central de até 1240px; em telas largas sobra margem dos dois lados */
+      :root { --gutter: 56px; --max: 1240px; --side: max(56px, calc((100vw - var(--max)) / 2)); }
       body { font-size: 18px; }
-      .col { max-width: 1200px; }
-      .h2, .about h2 { font-size: clamp(44px, 3.6vw, 60px); }
+      .col { max-width: var(--max); }
+      .h2, .about h2 { font-size: clamp(44px, 3.6vw, 56px); }
       .cta { width: auto; display: inline-flex; padding: 16px 34px; }
-      .bar { height: 72px; padding: 0 20px 0 var(--gutter); }
+      .bar { height: 72px; padding: 0 calc(var(--side) - 12px) 0 var(--side); }
       .bar-name { opacity: 1; }
       .mirror, .how, .build, .fit, .start, .online, .faq { padding-top: 112px; padding-bottom: 112px; }
 
@@ -367,14 +368,15 @@
       .dock .cta { box-shadow: 0 14px 34px -12px rgba(46, 26, 51, .55); }
 
       /* Capa: nome à esquerda, foto inteira à direita */
-      .cover { display: grid; grid-template-columns: 1fr auto; align-items: center; }
-      .masthead { grid-column: 1; grid-row: 1; text-align: left; padding: 0 var(--gutter); }
-      .masthead strong { font-size: clamp(110px, 10vw, 190px); }
+      .cover { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 0 var(--side); }
+      .masthead { grid-column: 1; grid-row: 1; text-align: left; padding: 72px 48px 0 0; }
+      .masthead strong { font-size: clamp(100px, 9vw, 150px); }
       .masthead span { font-size: 15px; margin-top: 20px; }
       .cover-photo { grid-column: 2; grid-row: 1; }
-      .cover-photo::before { top: 0; bottom: 0; left: 0; right: auto; width: 140px; height: auto; background: linear-gradient(90deg, var(--ink), rgba(46, 26, 51, 0)); }
-      .cover-img { height: min(100vh, 1000px); width: auto; aspect-ratio: 2 / 3; object-position: 50% 30%; }
-      .cover-note { left: auto; right: 32px; bottom: 120px; font-size: 40px; }
+      .cover-photo::before { top: 0; bottom: 0; left: 0; right: auto; width: 120px; height: auto; background: linear-gradient(90deg, var(--ink), rgba(46, 26, 51, 0)); }
+      .cover-photo::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 90px; z-index: 1; background: linear-gradient(270deg, var(--ink), rgba(46, 26, 51, 0)); }
+      .cover-img { height: min(100vh, 860px); width: auto; aspect-ratio: 2 / 3; object-position: 50% 30%; }
+      .cover-note { left: auto; right: 24px; bottom: 32px; font-size: 36px; }
 
       /* Introdução: título à esquerda, texto e botão à direita */
       .intro { padding-top: 96px; padding-bottom: 72px; }
@@ -396,7 +398,7 @@
       .relief h2 { font-size: clamp(44px, 3.6vw, 60px); }
       .pull { margin-top: 64px; }
 
-      .about { display: grid; grid-template-columns: 5fr 6fr; gap: 96px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 112px var(--gutter); }
+      .about { display: grid; grid-template-columns: 5fr 6fr; gap: 96px; align-items: center; max-width: calc(var(--max) + 2 * var(--gutter)); margin: 0 auto; padding: 112px var(--gutter); }
       .about .pad { padding: 0; }
       .about-text { padding-top: 0; }
 
@@ -406,14 +408,14 @@
       .build .h2 { margin-bottom: 40px; }
 
       /* A foto cobre a metade esquerda sem ditar a altura; quem manda é o texto */
-      .neuro, .closing { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: min(100vh, 860px); }
-      .neuro-img, .closing-img { position: absolute; left: 0; top: 0; width: 50%; height: 100%; min-height: 0; max-height: none; aspect-ratio: auto; }
+      .neuro, .closing { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: min(100vh, 780px); padding: 0 var(--side); }
+      .neuro-img, .closing-img { position: absolute; left: var(--side); top: 0; width: calc(50% - var(--side)); height: 100%; min-height: 0; max-height: none; aspect-ratio: auto; }
       .neuro-text, .closing-text { grid-column: 2; }
-      .neuro-text { display: flex; align-items: center; padding: 96px var(--gutter); }
+      .neuro-text { display: flex; align-items: center; padding: 96px 0 96px 72px; }
       .neuro-text .col { max-width: 560px; margin: 0; }
       .neuro h2 { font-size: clamp(40px, 3.2vw, 54px); }
 
-      .closing-text { position: static; background: none; display: flex; align-items: center; padding: 96px var(--gutter); }
+      .closing-text { position: static; background: none; display: flex; align-items: center; padding: 96px 0 96px 72px; }
       .closing-text .col { max-width: 600px; margin: 0; }
       .closing h2 { font-size: clamp(44px, 3.6vw, 60px); }
 
